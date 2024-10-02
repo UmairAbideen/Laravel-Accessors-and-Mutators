@@ -195,6 +195,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+<<<<<<< HEAD
+=======
+        // customely added
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
+>>>>>>> 78f65fb (first upload)
     ],
 
     /*

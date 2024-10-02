@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
 
-Route::get('/', [UserController::class, 'index'])->name('users.index');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+Route::get('/',[EmployeeController::class,'index'])->name('employee.fetch');
+Route::post('/create', [EmployeeController::class,'create'])->name('employee.create');
+Route::get('/edit', [EmployeeController::class,'edit'])->name('employee.edit');
+Route::delete('/delete', [EmployeeController::class,'delete'])->name('employee.delete');
+Route::get('/view', [EmployeeController::class,'view'])->name('employee.view');
