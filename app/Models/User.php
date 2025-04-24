@@ -15,46 +15,34 @@ class User extends Authenticatable
 
     protected $fillable = ['name', 'email', 'gender', 'age', 'contact'];
 
-    // Accessor for the contact attribute (decrypting)
-    public function getContactAttribute($value)
-    {
-        return Crypt::decryptString($value);
-    }
 
-    // Mutator for the contact attribute (encrypting)
+    // Mutator for the 'contact' attribute
+    // Automatically encrypts the contact value before saving to the database
     public function setContactAttribute($value)
     {
         $this->attributes['contact'] = Crypt::encryptString($value);
     }
 
-    // Accessor for the name attribute (capitalize the first letter)
+    // Accessor for the 'contact' attribute
+    // Automatically decrypts the contact value when accessed
+    public function getContactAttribute($value)
+    {
+        return Crypt::decryptString($value);
+    }
+
+
+    // Accessor for the 'name' attribute
+    // Capitalizes the first letter of the name when retrieved
     public function getNameAttribute($value)
     {
         return ucfirst($value);
     }
 
-    // // Mutator for the email attribute (store in lowercase)
-    // public function setEmailAttribute($value)
-    // {
-    //     $this->attributes['email'] = strtolower($value);
-    // }
-
-    // Accessor for the gender attribute (return "Male" or "Female")
+    // Accessor for the 'gender' attribute
+    // Capitalizes the first letter, e.g., "male" => "Male"
     public function getGenderAttribute($value)
     {
         return ucfirst($value);
     }
 
-
-    // Accessor for decoding a JSON attribute
-    public function getEmailAttribute($value)
-    {
-        return json_decode($value, true);
-    }
-
-    // Mutator for encoding an array into JSON before saving
-    public function setEmailAttribute($value)
-    {
-        $this->attributes['email'] = json_encode($value);
-    }
 }
